@@ -1,0 +1,21 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 2px;
+}
+.pagination li {
+  list-style: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.pagination li a {
+  padding: 3px 6px;
+  color: black;
+}
+.activePage {
+  font-weight: bold;
+  border-radius: 2px;
+  background-color: orange;
+  color: white;
+}
