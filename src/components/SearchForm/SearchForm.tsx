@@ -1,4 +1,3 @@
-import React from "react";
 interface SearchFormProps {
   onSearch: (topic: string) => void;
 }

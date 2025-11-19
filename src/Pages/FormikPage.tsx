@@ -1,4 +1,3 @@
-import React from "react";
 import FormikM4P2 from "../components/FormikM4P2/FormikM4P2";
 
 const FormikPage = () => {

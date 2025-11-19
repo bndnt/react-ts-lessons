@@ -1,4 +1,3 @@
-import React from "react";
 import type { Article } from "../../types/article";
 interface ArticleListProps {
   items: Article[];
