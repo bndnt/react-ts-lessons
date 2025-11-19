@@ -13,7 +13,7 @@ const QueryM4P1 = () => {
     // 1 minute
   });
 
-  console.log({ data, isLoading, isError });
+  // console.log({ data, isLoading, isError });
 
   return (
     <div className="module__container">

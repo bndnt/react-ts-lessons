@@ -63,6 +63,13 @@ button:focus-visible {
 .module__container {
   padding: 10px 0 20px;
 }
+pre {
+  background-color: #f1f5f9;
+  white-space: wrap;
+}
+pre code {
+  font-family: "Courier New", Courier, monospace;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -73,5 +80,11 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+@media (max-width: 1400px) {
+  .container {
+    max-width: none;
+    width: auto;
   }
 }
