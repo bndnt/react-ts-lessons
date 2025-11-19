@@ -64,6 +64,18 @@ const FormikPage = () => {
           </pre>
         </li>
       </ol>
+      <h3>Валідація</h3>
+      <h4>Yup</h4>
+      <a href="https://www.npmjs.com/package/yup" target="_blank">
+        Yup documentation
+      </a>
+      <pre>
+        <code>{`npm i yup`}</code>
+      </pre>
+      <p>Приклади виразів валідації полів</p>
+      <a href="https://regex101.com/" target="_blank">
+        Link regular expressions
+      </a>
       <FormikM4P2 />
     </div>
   );

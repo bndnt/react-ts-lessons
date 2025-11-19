@@ -1,12 +1,14 @@
 import { useId } from "react";
 import css from "./FormikM4P2.module.css";
-import { Formik, Form, Field, FormikHelpers } from "formik";
+import { Formik, Form, Field, FormikHelpers, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
 interface OrderFormValues {
   username: string;
   email: string;
-  delivery: "pickup" | "courier" | "gluten-free";
-  restrictions: string[];
-  deliveryTime: "morning" | "afternoon" | "evening";
+  delivery: "pickup" | "courier" | "drone";
+  restrictions: ("vegan" | "gluten-free" | "nut-free")[];
+  deliveryTime: string;
   message: string;
 }
 const INITIAL_VALUES: OrderFormValues = {
@@ -14,9 +16,21 @@ const INITIAL_VALUES: OrderFormValues = {
   email: "",
   delivery: "pickup",
   restrictions: ["vegan"],
-  deliveryTime: "morning",
+  deliveryTime: "",
   message: "",
 };
+// декларативний
+const OrderSchema = Yup.object().shape({
+  username: Yup.string().min(3).max(15).required(),
+  email: Yup.string().email("Email is not valid").required("Email is required"),
+  delivery: Yup.string().oneOf(
+    ["pickup", "courier", "drone"],
+    "Delivery is not valid"
+  ),
+  restrictions: Yup.array().min(1).of(Yup.string().required()).required(),
+  deliveryTime: Yup.string().required("Delivery time is required"),
+  message: Yup.string(),
+});
 const FormikM4P2 = () => {
   const fieldId = useId();
   const handleSubmit = (
@@ -28,14 +42,24 @@ const FormikM4P2 = () => {
   };
   return (
     <div>
-      <Formik initialValues={INITIAL_VALUES} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={INITIAL_VALUES}
+        onSubmit={handleSubmit}
+        validationSchema={OrderSchema}
+      >
         <Form className={css.form}>
           <fieldset>
             <legend>ClientInfo</legend>
             <label htmlFor={`${fieldId}-username`}>Name</label>
             <Field id={`${fieldId}-username`} type="text" name="username" />
+            <ErrorMessage
+              name="username"
+              component="span"
+              className={css.error}
+            />
             <label htmlFor="">Email</label>
             <Field type="email" name="email" />
+            <ErrorMessage name="email" component="span" className={css.error} />
           </fieldset>
           <fieldset>
             <legend>Delivery method</legend>
@@ -66,6 +90,11 @@ const FormikM4P2 = () => {
               />
               Drone
             </label>
+            <ErrorMessage
+              name="delivery"
+              component="span"
+              className={css.error}
+            />
           </fieldset>
           <fieldset>
             <legend>Dierary restrictions</legend>
@@ -96,6 +125,11 @@ const FormikM4P2 = () => {
               />
               Nut-free
             </label>
+            <ErrorMessage
+              name="restrictions"
+              component="span"
+              className={css.error}
+            />
           </fieldset>
           <label>Prefered delivery time</label>
           <Field
@@ -112,6 +146,11 @@ const FormikM4P2 = () => {
             <option value="afternoon">Afternoon (12:00-16:00)</option>
             <option value="evening">Evening (16:00-20:00)</option>
           </Field>
+          <ErrorMessage
+            name="deliveryTime"
+            component="span"
+            className={css.error}
+          />
           <label htmlFor={`${fieldId}-message`}>Additional message</label>
           <Field
             as="textarea"

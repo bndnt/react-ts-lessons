@@ -65,7 +65,10 @@ button:focus-visible {
 }
 pre {
   background-color: #f1f5f9;
-  white-space: wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word; /* старый синтаксис */
+  overflow-x: auto; /* внутренний горизонтальный скролл */
+  max-width: 100%;
 }
 pre code {
   font-family: "Courier New", Courier, monospace;
