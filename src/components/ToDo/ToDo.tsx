@@ -10,15 +10,23 @@ import SearchBox from "../SearchBox/SearchBox";
 import SortFilterM5P2 from "../SortFilterM5P2/SortFilterM5P2";
 /* P2-18 */
 import type { SortOrder } from "../../types/task";
+
+import useModalControl from "../hooks/useModalControl";
 const ToDo = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isModalOpen, openModal, closeModal } = useModalControl();
+  // если 2 модалки
+  // const {
+  //   isModalOpen: isCreateTaskModalOpen,
+  //   openModal: openCreateTaskModalOpen,
+  //   closeModal: closeCreateTaskModalOpen,
+  // } = useModalControl();
+
   // P2-1
   const [search, setSearch] = useState("");
 
   /* P2-12 asc - desc*/
   const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+
   // P2-3.3
   const { data, isLoading } = useQuery({
     queryKey: ["tasks", search, sortOrder],

@@ -25,7 +25,7 @@ export const getTasks = async (search: string, SortOrder: SortOrder) => {
       order: SortOrder,
     },
   });
-  console.log(res.data);
+  // console.log(res.data);
 
   return res.data;
 };
