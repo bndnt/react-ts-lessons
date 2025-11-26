@@ -6,8 +6,8 @@ function App() {
   return (
     <>
       <div className="container">
-        {/* <QueryM4P1 />
-        <FormikPage /> */}
+        <QueryM4P1 />
+        <FormikPage />
         <ToDoM5P1 />
       </div>
     </>
